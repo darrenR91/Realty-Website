@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>ManageAgents</servlet-name>
+        <servlet-class>src.servlets.ManageAgents</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PropertySearch</servlet-name>
+        <servlet-class>src.servlets.PropertySearch</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManageFavourites</servlet-name>
+        <servlet-class>src.servlets.ManageFavourites</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Index</servlet-name>
+        <servlet-class>src.servlets.Index</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManagePropertys</servlet-name>
+        <servlet-class>src.servlets.ManagePropertys</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManageAdmin</servlet-name>
+        <servlet-class>src.servlets.ManageAdmin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NewServlet</servlet-name>
+        <servlet-class>src.servlets.admin.NewServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ManageAgents</servlet-name>
+        <url-pattern>/ManageAgents</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PropertySearch</servlet-name>
+        <url-pattern>/PropertySearch</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManageFavourites</servlet-name>
+        <url-pattern>/ManageFavourites</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManageAdmin</servlet-name>
+        <url-pattern>/ManageAdmin</url-pattern>
+    </servlet-mapping>
+    <welcome-file-list>
+        <welcome-file>Index</welcome-file>
+    </welcome-file-list>
+    <error-page>
+        <error-code>403</error-code>
+        <location>/error.jsp</location>
+    </error-page>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Entire Application</web-resource-name>
+            <url-pattern>/*</url-pattern>
+        </web-resource-collection>
+        <user-data-constraint>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Protected Area</web-resource-name>
+            <url-pattern>/agent/*</url-pattern>
+        </web-resource-collection>
+        <!-- Authorize the programmer and service roles -->
+        <auth-constraint>
+            <role-name>agent</role-name>
+            <role-name>admin</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Admin Protected Area</web-resource-name>
+            <url-pattern>/admin/*</url-pattern>
+        </web-resource-collection>
+        <!-- Authorize the programmer and service roles -->
+        <auth-constraint>
+            <role-name>admin</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Servlet Protected Area</web-resource-name>
+            <url-pattern>/RealtyWebsite/ManageAgents</url-pattern>
+        </web-resource-collection>
+        <!-- Authorize the programmer and service roles -->
+        <auth-constraint>
+            <role-name>admin</role-name>
+            <role-name>agent</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <!-- Use form-based authentication -->
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <form-login-config>
+            <form-login-page>/agent/login.jsp</form-login-page>
+            <form-error-page>/agent/login_error.jsp</form-error-page>
+        </form-login-config>
+    </login-config>
+    <servlet-mapping>
+        <servlet-name>Index</servlet-name>
+        <url-pattern>/Index</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManagePropertys</servlet-name>
+        <url-pattern>/ManagePropertys</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NewServlet</servlet-name>
+        <url-pattern>/NewServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>/faces/*</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    <listener>
+        <listener-class>FavoritesCleanupTimer.QuartzListener</listener-class>
+    </listener>
+</web-app>

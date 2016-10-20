@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/RealtyWebsite">
+
+<!--    <Resource name="jdbc/litrealty" auth="Container" 
+              maxActive="100" maxIdle="30" maxWait="10000" 
+              username="root" password="" 
+              driverClassName="com.mysql.jdbc.Driver" 
+              url="jdbc:mysql://localhost:3306/litrealty?zeroDateTimeBehavior=convertToNull"
+              logAbandoned="true" removeAbandoned="true" 
+              removeAbandonedTimeout="60" type="javax.sql.DataSource"/>
+    
+    <Realm className="org.apache.catalina.realm.DataSourceRealm" debug="99"
+          dataSourceName="jdbc/litrealty" localDataSource="true"
+          userTable="agents" userNameCol="username" userCredCol="password" userId="agentId"
+          userRoleTable="userrole" roleNameCol="rolename" />-->
+    
+    <Resource name="jdbc/litrealty" auth="Container" 
+              maxActive="100" maxIdle="30" maxWait="10000" 
+              username="root" password="" 
+              driverClassName="com.mysql.jdbc.Driver" 
+              url="jdbc:mysql://localhost:3306/litrealty?zeroDateTimeBehavior=convertToNull"
+              logAbandoned="true" removeAbandoned="true" 
+              removeAbandonedTimeout="60" type="javax.sql.DataSource"/>
+    
+    <Realm className="org.apache.catalina.realm.DataSourceRealm" debug="99"
+          dataSourceName="jdbc/litrealty" localDataSource="true"
+          userTable="agents" userNameCol="username" userCredCol="password" userId="agentId"
+          userRoleTable="userrole" roleNameCol="rolename" />
+
+<!--<Resource name="jdbc:mysql:/admindb" auth="Container" 
+              maxActive="100" maxIdle="30" maxWait="10000" 
+              username="root" password="" 
+              driverClassName="com.mysql.jdbc.Driver" 
+              url="jdbc:mysql://localhost:3306/admindb?zeroDateTimeBehavior=convertToNull"
+              logAbandoned="true" removeAbandoned="true" 
+              removeAbandonedTimeout="60" type="javax.sql.DataSource"/>
+    
+    <Realm className="org.apache.catalina.realm.DataSourceRealm" debug="99"
+          dataSourceName="jdbc:mysql:/admindb" localDataSource="true"
+          userTable="userpass" userNameCol="Username" userCredCol="Password"
+          userRoleTable="userrole" roleNameCol="Rolename" />-->
+
+</Context>
